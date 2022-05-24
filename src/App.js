@@ -1,8 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form} from 'react-bootstrap'
+import { buildTOCMarkdown, headerListFromMarkdown } from './md'
 
 function App() {
   return (
@@ -13,39 +12,46 @@ function App() {
 class MarkdownGenerator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { inputMd: '', outputMd: '' };
+    this.state = { inputMd: '', outputMd: '', articleURL: ''};
 
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeMd = this.handleChangeMd.bind(this)
+    this.handleChangeURL = this.handleChangeURL.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(e) {
+  handleChangeMd(e) {
     this.setState({ inputMd: e.target.value })
+  }
+
+  handleChangeURL(e) {
+    this.setState({ articleURL: e.target.value })
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    this.setState({ outputMd: this.state.inputMd + 'peko' })
+    const headerList = headerListFromMarkdown(this.state.inputMd)
+    this.setState({ outputMd: buildTOCMarkdown(headerList, '  ', false, this.state.articleURL) })
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="App m-3">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h2>Stackoverflow Table of Contents generator</h2>
 
           <Form onSubmit={this.handleSubmit} className='w-75'>
             <Form.Group className="mb-3" controlId="markdownForm.ControlTextarea1">
-              <Form.Label>Markdown</Form.Label>
-              <Form.Control as="textarea" rows={3} placeholder="Paste Markdown HERE" onChange={this.handleChange} />
+              <Form.Control as="textarea" rows={3} className="my-3 form-control-lg" placeholder="Paste Markdown HERE" onChange={this.handleChangeMd} />
+              <Form.Control type="url" placeholder='Paste Stackoverflow article URL' onChange={this.handleChangeURL}></Form.Control>
             </Form.Group>
             <Button variant="primary" type="submit">Generate</Button>
 
           </Form>
 
           <Result text={this.state.outputMd}></Result>
+
+
 
         </header>
       </div>
@@ -54,7 +60,7 @@ class MarkdownGenerator extends React.Component {
 }
 
 function Result(props) {
-  return <textarea value={props.text} readOnly className='mt-4 w-50'></textarea>
+  return <textarea value={props.text} readOnly className='mt-4 w-50 py-5'></textarea>
 }
 
 export default App;
