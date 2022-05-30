@@ -62,7 +62,7 @@ class MarkdownGenerator extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const headerList = headerListFromMarkdown(this.state.inputMd)
-    this.setState({ outputMd: buildTOCMarkdown(headerList, '  ', false, this.state.articleURL) })
+    this.setState(prevState => ({ ...prevState, outputMd: buildTOCMarkdown(headerList, '  ', false, prevState.articleURL) }))
   }
 
   render() {
