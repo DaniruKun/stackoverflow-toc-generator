@@ -41,47 +41,43 @@ function Header() {
   )
 }
 
-class MarkdownGenerator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { inputMd: '', outputMd: '', articleURL: '' };
+function MarkdownGenerator() {
+  const [texts, setTexts] = React.useState({ inputMd: '', outputMd: '', articleURL: '' });
 
-    this.handleChangeMd = this.handleChangeMd.bind(this)
-    this.handleChangeURL = this.handleChangeURL.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+  const setInputMd = (event) => setTexts((currentTexts) => {
+    return { ...currentTexts, inputMd: event.target.value }
+  })
 
-  handleChangeMd(e) {
-    this.setState({ inputMd: e.target.value })
-  }
+  const setArticleURL = (event) => setTexts((currentTexts) => {
+    return {
+      ...currentTexts,
+      [event.target.name]: cleanURL(event.target.value)
+    }
+  })
 
-  handleChangeURL(e) {
-    this.setState({ articleURL: cleanURL(e.target.value) })
-  }
+  const setOutputMd = (event) => setTexts((currentTexts) => {
+    event.preventDefault()
+    const headerList = headerListFromMarkdown(currentTexts.inputMd)
 
-  handleSubmit(e) {
-    e.preventDefault()
-    const headerList = headerListFromMarkdown(this.state.inputMd)
-    this.setState(prevState => ({ ...prevState, outputMd: buildTOCMarkdown(headerList, '  ', false, prevState.articleURL) }))
-  }
+    return { ...currentTexts, outputMd: buildTOCMarkdown(headerList, '  ', false, currentTexts.articleURL) }
+  })
 
-  render() {
-    return (
-      <div className="App m-3">
-        <h2>Stackoverflow Table of Contents generator</h2>
+  return (
+    <div className="App m-3">
+      <h2>Stackoverflow Table of Contents generator</h2>
 
-        <Form onSubmit={this.handleSubmit} className='w-75'>
-          <Form.Group className="mb-3" controlId="markdownForm.ControlTextarea1">
-            <Form.Control as="textarea" rows={3} className="my-3 form-control-lg" placeholder="Paste Markdown HERE" onChange={this.handleChangeMd} autofocus="true" />
-            <Form.Control type="url" placeholder='Paste Stackoverflow article URL' onChange={this.handleChangeURL}></Form.Control>
-          </Form.Group>
-          <Button variant="primary" type="submit">Generate</Button>
-        </Form>
+      <Form onSubmit={setOutputMd} className='w-75'>
+        <Form.Group className="mb-3" controlId="markdownForm.ControlTextarea1">
+          <Form.Control as="textarea" rows={3} className="my-3 form-control-lg" placeholder="Paste Markdown HERE" onChange={setInputMd} autofocus="true" />
+          <Form.Control type="url" placeholder='Paste Stackoverflow article URL' name='articleURL' onChange={setArticleURL}></Form.Control>
+        </Form.Group>
+        <Button variant="primary" type="submit">Generate</Button>
+      </Form>
 
-        <Result text={this.state.outputMd}></Result>
-      </div>
-    )
-  }
+      <Result text={texts.outputMd}></Result>
+    </div>
+  )
+
 }
 
 function Result(props) {
