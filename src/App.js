@@ -62,26 +62,32 @@ function MarkdownGenerator() {
     return { ...currentTexts, outputMd: buildTOCMarkdown(headerList, '  ', false, currentTexts.articleURL) }
   })
 
+  function copyHandler() {
+    navigator.clipboard.writeText(texts.outputMd)
+  }
+
   return (
-    <div className="App m-3">
+    <div className="App m-3 vh-100 flex-column">
       <h2>Stackoverflow Table of Contents generator</h2>
 
       <Form onSubmit={setOutputMd} className='w-75'>
         <Form.Group className="mb-3" controlId="markdownForm.ControlTextarea1">
-          <Form.Control as="textarea" rows={3} className="my-3 form-control-lg" placeholder="Paste Markdown HERE" onChange={setInputMd} autofocus="true" />
+          <Form.Control as="textarea" rows={3} className="my-3 form-control-lg" placeholder="Paste Markdown HERE" onChange={setInputMd} autoFocus={true} />
           <Form.Control type="url" placeholder='Paste Stackoverflow article URL' name='articleURL' onChange={setArticleURL}></Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">Generate</Button>
       </Form>
 
       <Result text={texts.outputMd}></Result>
+      <div>
+        <Button variant="secondary" onClick={copyHandler}>Copy</Button>
+      </div>
     </div>
   )
-
 }
 
 function Result(props) {
-  return <textarea value={props.text} readOnly className='mt-4 w-50 py-5'></textarea>
+  return <textarea value={props.text} readOnly className='mt-4 w-50 py-5 h-50'></textarea>
 }
 
 function cleanURL(url) {
