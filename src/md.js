@@ -127,6 +127,8 @@ function indentWith(style) {
 function buildPageAnchor(text) {
 	return stripPunctuation(text)
 		.replace(/ /g, '-')
+		.replace(/\d-/, '')
+		.replace(/--/, '-')
 		.toLowerCase();
 }
 
