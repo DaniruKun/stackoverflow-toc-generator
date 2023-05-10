@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/stackoverflow-toc-generator/static/css/main.38be36b0.css",
-    "main.js": "/stackoverflow-toc-generator/static/js/main.ceb8c92d.js",
-    "static/js/787.b9edfb93.chunk.js": "/stackoverflow-toc-generator/static/js/787.b9edfb93.chunk.js",
+    "main.css": "/stackoverflow-toc-generator/static/css/main.44f8b8b5.css",
+    "main.js": "/stackoverflow-toc-generator/static/js/main.bce9c76a.js",
+    "static/js/496.799a0fec.chunk.js": "/stackoverflow-toc-generator/static/js/496.799a0fec.chunk.js",
     "index.html": "/stackoverflow-toc-generator/index.html",
-    "main.38be36b0.css.map": "/stackoverflow-toc-generator/static/css/main.38be36b0.css.map",
-    "main.ceb8c92d.js.map": "/stackoverflow-toc-generator/static/js/main.ceb8c92d.js.map",
-    "787.b9edfb93.chunk.js.map": "/stackoverflow-toc-generator/static/js/787.b9edfb93.chunk.js.map"
+    "main.44f8b8b5.css.map": "/stackoverflow-toc-generator/static/css/main.44f8b8b5.css.map",
+    "main.bce9c76a.js.map": "/stackoverflow-toc-generator/static/js/main.bce9c76a.js.map",
+    "496.799a0fec.chunk.js.map": "/stackoverflow-toc-generator/static/js/496.799a0fec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.38be36b0.css",
-    "static/js/main.ceb8c92d.js"
+    "static/css/main.44f8b8b5.css",
+    "static/js/main.bce9c76a.js"
   ]
 }
