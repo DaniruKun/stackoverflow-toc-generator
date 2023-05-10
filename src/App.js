@@ -21,6 +21,7 @@ function About() {
     <h1>About</h1>
     <p className='text-justify'>This is a small tool that generates a MarkDown compliant Table of Contents for <a href='https://stackoverflow.com'>Stackoverflow</a>'s flavour of MarkDown.</p>
     <p>Simply paste the MarkDown text, put in the page URL, and press <b>Generate</b>.</p>
+    <a href="https://github.com/DaniruKun/stackoverflow-toc-generator">Source Code</a>
   </div>
 }
 
