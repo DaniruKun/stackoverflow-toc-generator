@@ -1,7 +1,7 @@
 {
   "name": "so-toc-generator",
   "version": "0.1.2",
-  "homepage": "https://danirukun.com/stackoverflow-toc-generator",
+  "homepage": "https://so-toc.danirukun.com",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
