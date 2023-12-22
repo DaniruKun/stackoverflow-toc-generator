@@ -1,7 +1,7 @@
 {
   "name": "so-toc-generator",
   "version": "0.1.2",
-  "homepage": "https://danirukun.github.io/stackoverflow-toc-generator",
+  "homepage": "https://danirukun.com/stackoverflow-toc-generator",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -41,5 +41,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2"
   }
 }
