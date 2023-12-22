@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-const MARKDOWN_LINK_MATCH_REGEXP = /\[([^\]]+)\]\([^\)]+\)/g,
+const MARKDOWN_LINK_MATCH_REGEXP = /\[([^\]]+)\]\([^)]+\)/g,
 	MARKDOWN_INLINE_CODE_START_END_REGEXP = /^`[^`]+`$/,
 
 	CODE_BLOCK_INDENT_REGEXP = /^ {4,}|\t/,
@@ -111,17 +111,6 @@ export function headerListFromMarkdown(markdown) {
 	}
 
 	return headerList;
-}
-
-function indentWith(style) {
-	// tab mode
-	if (style === 'tab') {
-		return '\t';
-	}
-
-	// spaces mode
-	const match = /^space-([0-9])$/.exec(style);
-	return ' '.repeat((match) ? match[1] : 1);
 }
 
 function buildPageAnchor(text) {

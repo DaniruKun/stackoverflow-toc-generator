@@ -19,7 +19,7 @@ function App() {
 function About() {
   return <div className='m-3'>
     <h1>About</h1>
-    <p className='text-justify'>This is a small tool that generates a MarkDown compliant Table of Contents for <a href='https://stackoverflow.com'>Stackoverflow</a>'s flavour of MarkDown.</p>
+    <p className='text-justify'>This is a small tool that generates a MarkDown compliant Table of Contents for <a href='https://stackoverflow.com'>Stackoverflow</a>&rsquo;s flavour of MarkDown.</p>
     <p>Simply paste the MarkDown text, put in the page URL, and press <b>Generate</b>.</p>
     <a href="https://github.com/DaniruKun/stackoverflow-toc-generator">Source Code</a>
   </div>
@@ -88,6 +88,7 @@ function MarkdownGenerator() {
 }
 
 function Result(props) {
+  // eslint-disable-next-line react/prop-types
   return <textarea value={props.text} readOnly className='mt-4 w-50 py-5 h-50'></textarea>
 }
 
